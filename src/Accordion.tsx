@@ -8,14 +8,11 @@ type Props = {
 
 const Accordion = ({ children, open }: Props) => {
   const [height, setHeight] = React.useState("0px");
-  const measuredRef = React.useCallback(
-    (node: HTMLElement | null | undefined) => {
-      if (node) {
-        setHeight(`${node.scrollHeight}px`);
-      }
-    },
-    []
-  );
+  const measuredRef = React.useCallback((node: HTMLElement | null) => {
+    if (node) {
+      setHeight(`${node.scrollHeight}px`);
+    }
+  }, []);
 
   const { ...props } = useSpring({
     height: open ? height : "0px",
